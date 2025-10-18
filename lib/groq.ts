@@ -17,8 +17,8 @@ export interface GroqResponse {
 
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions'
 const OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY
-const VALIDATION_MODEL = process.env.NEXT_PUBLIC_OPENAI_VALIDATION_MODEL // || 'gpt-3.5-turbo'
-const RESPONSE_MODEL = process.env.NEXT_PUBLIC_OPENAI_RESPONSE_MODEL //|| 'gpt-3.5-turbo'
+const VALIDATION_MODEL = process.env.NEXT_PUBLIC_OPENAI_VALIDATION_MODEL || 'gpt-3.5-turbo'
+const RESPONSE_MODEL = process.env.NEXT_PUBLIC_OPENAI_RESPONSE_MODEL || 'gpt-3.5-turbo'
 
 // System prompt for law validation and responses
 const SYSTEM_PROMPT =`You are Avokati AI, a professional legal assistant specialized EXCLUSIVELY in Kosovo law, regulations, and legal matters. Your expertise draws from official sources like the Official Gazette of the Republic of Kosovo (Gazeta Zyrtare - GZK). Always prioritize accuracy, neutrality, and ethical guidelines—remind users this is not formal legal advice.
