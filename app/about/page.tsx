@@ -30,7 +30,7 @@ export default function AboutPage() {
                   complex jargon, and limited availability.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
-                  By combining advanced artificial intelligence with legal expertise, we've created
+                  By combining advanced artificial intelligence with legal expertise, we&apos;ve created
                   a platform that makes legal guidance available to everyone, everywhere, at any time.
                 </p>
               </div>

@@ -169,6 +169,7 @@ export default function LoggedInChat() {
     }, 2000)
 
     return () => clearTimeout(timeoutId)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentChat, isSaving])
 
   // Save chat session to localStorage (with Firestore backup)
