@@ -1,8 +1,5 @@
 'use client'
 
-import { useEffect } from 'react'
-import Link from 'next/link'
-
 export default function Error({
   error,
   reset,
@@ -10,11 +7,6 @@ export default function Error({
   error: Error & { digest?: string }
   reset: () => void
 }) {
-  useEffect(() => {
-    // Log the error to an error reporting service
-    console.error('Error caught by error boundary:', error)
-  }, [error])
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center p-4">
       <div className="text-center">
@@ -23,19 +15,26 @@ export default function Error({
         <p className="text-slate-400 mb-8">
           An unexpected error has occurred. Please try again.
         </p>
-        <div className="flex gap-4 justify-center">
+        <div className="flex gap-4 justify-center flex-wrap">
           <button
-            onClick={() => reset()}
+            onClick={() => {
+              try {
+                reset()
+              } catch (e) {
+                console.error('Reset error:', e)
+                window.location.href = '/'
+              }
+            }}
             className="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-medium py-2 px-6 rounded-lg transition-colors"
           >
             Try Again
           </button>
-          <Link
+          <a
             href="/"
             className="inline-block bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-6 rounded-lg transition-colors"
           >
             Go Home
-          </Link>
+          </a>
         </div>
       </div>
     </div>

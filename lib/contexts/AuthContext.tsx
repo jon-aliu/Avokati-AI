@@ -49,29 +49,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Only set up auth listener if Firebase is configured
-    if (!auth) {
-      setLoading(false)
-      return
-    }
-
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      setUser(user)
-      
-      // Create user document in Firestore if user exists and email is verified
-      if (user && user.emailVerified && user.email) {
-        try {
-          console.log('📧 Email verified, ensuring user document exists')
-          await createUserDocument(user.uid, user.email, user.displayName)
-        } catch (error) {
-          console.error('Error creating user document:', error)
-        }
+    try {
+      // Only set up auth listener if Firebase is configured and we're on client
+      if (typeof window === 'undefined' || !auth) {
+        setLoading(false)
+        return
       }
-      
-      setLoading(false)
-    })
 
-    return unsubscribe
+      const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        setUser(user)
+        
+        // Create user document in Firestore if user exists and email is verified
+        if (user && user.emailVerified && user.email) {
+          try {
+            console.log('📧 Email verified, ensuring user document exists')
+            await createUserDocument(user.uid, user.email, user.displayName)
+          } catch (error) {
+            console.error('Error creating user document:', error)
+          }
+        }
+        
+        setLoading(false)
+      })
+
+      return unsubscribe
+    } catch (error) {
+      console.error('Auth provider initialization error:', error)
+      setLoading(false)
+    }
   }, [])
 
   const signIn = async (email: string, password: string) => {
