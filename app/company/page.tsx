@@ -95,7 +95,7 @@ export default function CompanyPage() {
                 </div>
                 <h3 className="font-semibold text-gray-800 mb-2">Accessibility</h3>
                 <p className="text-gray-600 text-sm">
-                  Legal services should be accessible to everyone. We're breaking down barriers worldwide.
+                  Legal services should be accessible to everyone. We&apos;re breaking down barriers worldwide.
                 </p>
               </div>
             </div>

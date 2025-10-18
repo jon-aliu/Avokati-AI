@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-hot-toast'
 import { Timestamp } from 'firebase/firestore'
@@ -169,10 +169,10 @@ export default function LoggedInChat() {
     }, 2000)
 
     return () => clearTimeout(timeoutId)
-  }, [currentChat])
+  }, [currentChat, isSaving])
 
   // Save chat session to localStorage (with Firestore backup)
-  const saveChat = async (session: ChatSession, quiet: boolean = true) => {
+  const saveChat = useCallback(async (session: ChatSession, quiet: boolean = true) => {
     if (!user?.uid) {
       console.error('⚠️ Cannot save chat: No user logged in')
       return
@@ -253,7 +253,7 @@ export default function LoggedInChat() {
         )
       }
     }
-  }
+  }, [user, chatSessions, language])
 
   // Create new chat
   const createNewChat = () => {

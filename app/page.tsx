@@ -512,7 +512,7 @@ export default function HomePage() {
                       ))}
                     </div>
                     <p className="text-slate-300 italic mb-4 leading-relaxed">
-                      "{testimonial.quote}"
+                      &quot;{testimonial.quote}&quot;
                     </p>
                     <div className="pt-4 border-t border-slate-700/50">
                       <p className="font-semibold text-white">{testimonial.author}</p>

@@ -168,7 +168,7 @@ export default function VerifyEmailPage() {
                     <span className="text-xs font-bold text-cyan-400">3</span>
                   </div>
                   <p className="text-sm text-slate-300">
-                    Come back here and click "I've Verified My Email"
+                    Come back here and click &quot;I&apos;ve Verified My Email&quot;
                   </p>
                 </div>
               </div>
@@ -181,7 +181,7 @@ export default function VerifyEmailPage() {
                 loading={checking}
                 icon={<HiCheckCircle />}
               >
-                I've Verified My Email
+                I&apos;ve Verified My Email
               </Button>
 
               {/* Resend Email Button */}
@@ -202,7 +202,7 @@ export default function VerifyEmailPage() {
               {/* Helpful Tips */}
               <div className="pt-4 border-t border-slate-700/50">
                 <p className="text-xs text-slate-500 mb-2">
-                  <strong className="text-slate-400">Didn't receive the email?</strong>
+                  <strong className="text-slate-400">Didn&apos;t receive the email?</strong>
                 </p>
                 <ul className="text-xs text-slate-500 space-y-1 list-disc list-inside">
                   <li>Check your spam/junk folder</li>
