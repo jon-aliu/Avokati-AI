@@ -1,0 +1,670 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 199 89% 48%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 199 89% 48%;
+    --radius: 0.75rem;
+    
+    --font-inter: 'Inter', sans-serif;
+    --font-space-grotesk: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+    background-image: 
+      radial-gradient(at 20% 30%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
+      radial-gradient(at 80% 70%, rgba(168, 85, 247, 0.08) 0px, transparent 50%),
+      radial-gradient(at 50% 50%, rgba(59, 130, 246, 0.05) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-950/50;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-700/50 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-600/70;
+  }
+}
+
+@layer components {
+  /* Glass morphism */
+  .glass {
+    @apply backdrop-blur-xl bg-slate-900/40 border border-slate-700/30;
+  }
+
+  .glass-sm {
+    @apply backdrop-blur-md bg-slate-900/30 border border-slate-700/20;
+  }
+
+  .glass-heavy {
+    @apply backdrop-blur-2xl bg-slate-900/60 border border-slate-700/40;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent;
+  }
+
+  .gradient-text-primary {
+    @apply bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text text-transparent;
+  }
+
+  .gradient-text-accent {
+    @apply bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent;
+  }
+
+  /* Container */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20;
+  }
+
+  /* Card variants */
+  .card-premium {
+    @apply glass rounded-2xl p-6 transition-all duration-300 hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-500/10;
+  }
+
+  .card-interactive {
+    @apply card-premium cursor-pointer hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  /* Section backgrounds */
+  .section-gradient {
+    @apply bg-gradient-to-b from-slate-900/50 via-slate-900/30 to-slate-900/50;
+  }
+
+  /* Loading skeleton */
+  .skeleton {
+    @apply animate-pulse bg-slate-800/50 rounded;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply badge bg-cyan-500/10 text-cyan-400 border border-cyan-500/20;
+  }
+
+  .badge-success {
+    @apply badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20;
+  }
+
+  .badge-warning {
+    @apply badge bg-yellow-500/10 text-yellow-400 border border-yellow-500/20;
+  }
+
+  .badge-error {
+    @apply badge bg-red-500/10 text-red-400 border border-red-500/20;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Animations */
+  .animate-in {
+    animation-name: animate-in;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+  }
+
+  .animate-out {
+    animation-name: animate-out;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+  }
+
+  /* Gradient background animation */
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes animate-out {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+}
+
+/* ============================================
+   MOBILE-FIRST RESPONSIVE DESIGN
+   ============================================ */
+
+/* Safe Area - iOS Notch & Navigation Bar Support */
+@layer base {
+  :root {
+    --safe-area-inset-top: env(safe-area-inset-top);
+    --safe-area-inset-bottom: env(safe-area-inset-bottom);
+    --safe-area-inset-left: env(safe-area-inset-left);
+    --safe-area-inset-right: env(safe-area-inset-right);
+    
+    /* Mobile-optimized spacing scale */
+    --spacing-xs: 0.5rem;    /* 8px */
+    --spacing-sm: 0.75rem;   /* 12px */
+    --spacing-md: 1rem;      /* 16px */
+    --spacing-lg: 1.5rem;    /* 24px */
+    --spacing-xl: 2rem;      /* 32px */
+    --spacing-2xl: 3rem;     /* 48px */
+  }
+  
+  /* Better mobile defaults */
+  html {
+    /* Prevent iOS zoom on input focus */
+    font-size: 16px;
+    /* Prevent horizontal scroll */
+    overflow-x: hidden;
+    /* Improve tap behavior */
+    -webkit-tap-highlight-color: transparent;
+    /* Enable momentum scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  body {
+    /* Prevent overscroll/bounce on iOS */
+    overscroll-behavior: none;
+    /* Prevent horizontal scroll */
+    overflow-x: hidden;
+    /* Better text rendering */
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Touch-friendly minimum sizes */
+  button,
+  a[role="button"],
+  input[type="button"],
+  input[type="submit"] {
+    /* Apple HIG: 44x44px minimum touch target */
+    min-height: 44px;
+    min-width: 44px;
+    /* Better touch feedback */
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Prevent zoom on inputs (iOS) */
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+    min-height: 44px;
+  }
+  
+  /* Better heading hierarchy for mobile */
+  h1 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Mobile-optimized images */
+  img {
+    max-width: 100%;
+    height: auto;
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+}
+
+/* ============================================
+   MOBILE UTILITIES
+   ============================================ */
+
+@layer utilities {
+  /* Safe area utilities */
+  .safe-area-top {
+    padding-top: max(1rem, var(--safe-area-inset-top));
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: max(1rem, var(--safe-area-inset-bottom));
+  }
+  
+  .safe-area-left {
+    padding-left: max(1rem, var(--safe-area-inset-left));
+  }
+  
+  .safe-area-right {
+    padding-right: max(1rem, var(--safe-area-inset-right));
+  }
+  
+  .safe-area-inset {
+    padding-top: var(--safe-area-inset-top);
+    padding-bottom: var(--safe-area-inset-bottom);
+    padding-left: var(--safe-area-inset-left);
+    padding-right: var(--safe-area-inset-right);
+  }
+  
+  /* Touch-friendly utilities */
+  .touch-target {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  .touch-target-lg {
+    min-width: 56px;
+    min-height: 56px;
+  }
+  
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+  
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Momentum scrolling for iOS */
+  .momentum-scroll {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+  }
+  
+  /* Hide scrollbar but keep scrolling */
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Mobile-optimized text */
+  .text-mobile-sm {
+    @apply text-xs sm:text-sm;
+  }
+  
+  .text-mobile-base {
+    @apply text-sm sm:text-base;
+  }
+  
+  .text-mobile-lg {
+    @apply text-base sm:text-lg;
+  }
+  
+  .text-mobile-xl {
+    @apply text-lg sm:text-xl;
+  }
+  
+  /* Mobile-optimized spacing */
+  .mobile-p {
+    @apply p-3 sm:p-4 md:p-6;
+  }
+  
+  .mobile-px {
+    @apply px-3 sm:px-4 md:px-6 lg:px-8;
+  }
+  
+  .mobile-py {
+    @apply py-6 sm:py-8 md:py-12 lg:py-16;
+  }
+  
+  /* Better glass effect performance on mobile */
+  .glass-optimized {
+    @apply glass;
+    will-change: backdrop-filter;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Extra Small Phones (iPhone SE, small Android phones) */
+@media (max-width: 374px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .container-custom {
+    @apply px-3;
+  }
+  
+  h1 {
+    @apply text-2xl;
+  }
+  
+  h2 {
+    @apply text-xl;
+  }
+  
+  h3 {
+    @apply text-lg;
+  }
+}
+
+/* Small Phones (iPhone 12 Mini, standard smartphones) */
+@media (min-width: 375px) and (max-width: 639px) {
+  html {
+    font-size: 15px;
+  }
+  
+  .container-custom {
+    @apply px-4;
+  }
+}
+
+/* Large Phones & Small Tablets (sm) */
+@media (min-width: 640px) {
+  html {
+    font-size: 16px;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* Tablets (md) */
+@media (min-width: 768px) {
+  .container-custom {
+    @apply px-6;
+  }
+}
+
+/* Desktop & Large Tablets (lg) */
+@media (min-width: 1024px) {
+  .container-custom {
+    @apply px-8;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* Large Desktops (xl) */
+@media (min-width: 1280px) {
+  /* Full desktop experience */
+}
+
+/* Extra Large Desktops (2xl) */
+@media (min-width: 1536px) {
+  /* Ultra-wide displays */
+}
+
+/* ============================================
+   ORIENTATION-SPECIFIC STYLES
+   ============================================ */
+
+/* Mobile Landscape - Reduce vertical spacing */
+@media (orientation: landscape) and (max-height: 500px) {
+  .mobile-py {
+    @apply py-4 sm:py-6;
+  }
+  
+  /* Reduce navbar height */
+  nav {
+    @apply h-14;
+  }
+  
+  /* Compact modals */
+  .modal-content {
+    max-height: 80vh;
+  }
+}
+
+/* Mobile Portrait - Optimize for vertical scrolling */
+@media (orientation: portrait) and (max-width: 640px) {
+  /* Add extra bottom padding for safe area */
+  .chat-input-container {
+    padding-bottom: max(1.5rem, var(--safe-area-inset-bottom));
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-float,
+  .animate-pulse-slow,
+  .animate-gradient {
+    animation: none !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .glass,
+  .glass-sm,
+  .glass-heavy,
+  .glass-optimized {
+    backdrop-filter: none !important;
+    background-color: rgb(15 23 42 / 0.95) !important;
+    border-width: 2px;
+  }
+  
+  .gradient-text {
+    -webkit-text-fill-color: inherit;
+    color: rgb(34, 211, 238);
+  }
+}
+
+/* Dark Mode (default) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+/* Focus Visible - Keyboard Navigation */
+.focus-visible:focus {
+  @apply outline-none ring-2 ring-cyan-500 ring-offset-2 ring-offset-slate-950;
+}
+
+/* Better focus for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .focus-visible:focus {
+    @apply ring-4 ring-cyan-500/50;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .glass,
+  .glass-sm,
+  .glass-heavy,
+  .glass-optimized {
+    background: white !important;
+    backdrop-filter: none !important;
+    border: 1px solid #ccc !important;
+  }
+  
+  .gradient-text {
+    -webkit-text-fill-color: inherit !important;
+    color: black !important;
+  }
+  
+  /* Hide interactive elements */
+  nav,
+  button,
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   DEVICE-SPECIFIC OPTIMIZATIONS
+   ============================================ */
+
+/* iOS Specific */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari specific styles */
+  input,
+  textarea {
+    /* Fix iOS input padding */
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  
+  /* Fix iOS momentum scrolling */
+  .chat-messages {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Android Specific */
+@supports not (-webkit-touch-callout: none) {
+  /* Android Chrome specific styles */
+}
+
+/* ============================================
+   HOVER CAPABILITY DETECTION
+   ============================================ */
+
+/* Touch devices (no hover) */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover effects, use active states instead */
+  .hover-lift:hover {
+    transform: none;
+  }
+  
+  .hover-lift:active {
+    transform: translateY(-2px);
+  }
+  
+  /* Make touch targets larger */
+  button,
+  a[role="button"] {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
+
+/* Desktop (hover supported) */
+@media (hover: hover) and (pointer: fine) {
+  /* Keep hover effects for mouse users */
+}
